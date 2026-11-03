@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El Vetado · Carpintería en Palma</title>
+<style>
+:root{--bg:#f6efe4;--surface:#fffaf1;--ink:#2b1e14;--muted:#6f5b49;--accent:#9a5a2a;--accent-ink:#fff;--line:#e2d3bd;--g1:#c89a62;--g2:#a8773f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b130c;--surface:#261b11;--ink:#f3e8d8;--muted:#bfa98f;--accent:#d4934f;--accent-ink:#1b130c;--line:#3b2b1c;--g1:#7a5430;--g2:#5a3c20;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1b130c;--surface:#261b11;--ink:#f3e8d8;--muted:#bfa98f;--accent:#d4934f;--accent-ink:#1b130c;--line:#3b2b1c;--g1:#7a5430;--g2:#5a3c20;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,"Times New Roman",serif}
+a{color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px}
+.logo{font-weight:700;font-size:1.25rem;letter-spacing:.04em;text-decoration:none}
+nav{display:flex;gap:16px;flex-wrap:wrap;font:600 .9rem system-ui,sans-serif}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--accent)}
+.hero{padding:72px 0 56px;text-align:center}
+.hero h1{font-size:clamp(2.2rem,7vw,3.8rem);line-height:1.1;margin:0 0 12px}
+.hero p.lead{font-size:1.2rem;color:var(--muted);max-width:560px;margin:0 auto 28px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:12px 24px;border-radius:8px;text-decoration:none;font:700 1rem system-ui,sans-serif;border:0;cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--accent);margin-left:8px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:1.8rem;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+.card h3{margin:0 0 6px;font-size:1.15rem}.card p{margin:0;color:var(--muted);font-size:.97rem}
+.pic{aspect-ratio:4/3;border-radius:10px;display:flex;align-items:flex-end;padding:12px;color:#fff;font:600 .9rem system-ui,sans-serif;background:repeating-linear-gradient(100deg,var(--g1) 0 14px,var(--g2) 14px 20px,var(--g1) 20px 36px)}
+.pic span{background:rgba(0,0,0,.55);padding:3px 9px;border-radius:5px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px}
+table{border-collapse:collapse;width:100%;font:.95rem system-ui,sans-serif}
+td{padding:6px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:right;color:var(--muted)}
+form{display:grid;gap:10px}
+input,textarea{width:100%;padding:11px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit}
+footer{padding:28px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted);font:.85rem system-ui,sans-serif}
+.herobg{background-size:cover;background-position:center}
+.herobg.has-img{color:#fff}.herobg.has-img .lead{color:#f1e6d6}.herobg.has-img .btn.alt{color:#fff;border-color:#fff}
+.hp{display:inline-block;margin-top:18px;font:600 .8rem system-ui,sans-serif;color:var(--muted);cursor:pointer;text-decoration:underline}
+.herobg.has-img .hp{color:#f1e6d6}.hp input{display:none}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:999px;font:600 .88rem system-ui,sans-serif;cursor:pointer}
+.chip.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button.pic{border:0;cursor:pointer;width:100%;text-align:left;background-size:cover;background-position:center;transition:transform .15s}
+button.pic:hover{transform:scale(1.02)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+.modal.open{display:flex}
+.mbox{background:var(--surface);color:var(--ink);border-radius:12px;max-width:760px;width:100%;max-height:92%;overflow:auto;padding:16px;position:relative}
+.mb{aspect-ratio:4/3;border-radius:8px;overflow:hidden;position:relative;background:repeating-linear-gradient(100deg,var(--g1) 0 14px,var(--g2) 14px 20px,var(--g1) 20px 36px)}
+.mb img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font:600 1rem system-ui,sans-serif}
+.nav2{position:absolute;top:50%;transform:translateY(-50%);border:0;background:rgba(0,0,0,.55);color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.3rem;cursor:pointer}
+#pv{left:8px}#nx{right:8px}
+.th{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.th button{width:56px;height:56px;border:2px solid var(--line);border-radius:6px;padding:0;overflow:hidden;background:var(--bg);color:var(--ink);cursor:pointer;font:600 .85rem system-ui,sans-serif}
+.th button.on{border-color:var(--accent)}.th img{width:100%;height:100%;object-fit:cover}
+.mbox h3{margin:6px 0 2px;font-size:1.3rem}.mbox .md{margin:0;color:var(--muted)}
+.x{position:absolute;top:8px;right:8px;z-index:2;border:0;background:rgba(0,0,0,.6);color:#fff;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer}
+/* ===== Aspecto tomado de tu plantilla ===== */
+header{background:#262320;border-bottom:0;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#262320;z-index:10}
+.logo{color:#f3e8d8}nav a{color:#e6dccd}nav a:hover{color:#d4934f}
+.herobg{background-image:linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.62)),repeating-linear-gradient(100deg,#7a5430 0 14px,#5a3c20 14px 20px,#7a5430 20px 36px);color:#fff}
+.herobg .lead,.herobg .hp{color:#f1e6d6}.herobg .btn.alt{color:#fff;border-color:#fff}
+.hero{padding:130px 0 110px}
+#servicios .wrap>h2,#trabajos .wrap>h2{text-align:center;text-transform:uppercase;letter-spacing:.06em;font-size:1.5rem}
+#servicios .wrap>h2::before,#servicios .wrap>h2::after,#trabajos .wrap>h2::before,#trabajos .wrap>h2::after{content:"";display:inline-block;width:40px;height:2px;background:var(--accent);vertical-align:middle;margin:0 16px}
+#servicios .sub,#trabajos .sub{text-align:center}
+.chips{justify-content:center}
+button.pic{position:relative;overflow:hidden}
+button.pic::after{content:"+";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:300 3.5rem system-ui,sans-serif;color:#fff;background:rgba(154,90,42,.82);opacity:0;transition:opacity .3s}
+button.pic:hover::after,button.pic:focus-visible::after{opacity:1}
+footer{background:#202322;color:#cfc6b8;padding:42px 0}
+/* ===== Extras: scroll, menú activo, volver arriba, animación ===== */
+html{scroll-padding-top:calc(70px + env(safe-area-inset-top,0px))}
+nav a.active{color:#d4934f}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+#up{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);font-size:1.3rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s;z-index:8}
+#up.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="logo" href="#inicio">EL VETADO</a>
+<nav><a href="#servicios">Servicios</a><a href="#trabajos">Trabajos</a><a href="#contacto">Presupuesto</a></nav>
+</div></header>
+
+<main>
+<div class="herobg" id="inicio"><div class="wrap hero">
+<h1>No es vetado,<br>es veteado.</h1>
+<p class="lead">Carpintería artesanal en Palma. Muebles y trabajos a medida, hechos con madera y con cabeza.</p>
+<a class="btn" href="#contacto">Pide presupuesto</a><a class="btn alt" href="#trabajos">Ver trabajos</a><br>
+<label class="hp">Probar con mi foto de cabecera<input type="file" id="hp" accept="image/*"></label>
+</div></div>
+
+<section id="servicios"><div class="wrap">
+<h2>Servicios</h2><p class="sub">Esto es lo que hacemos en el taller.</p>
+<div class="grid">
+<div class="card"><h3>Muebles a medida</h3><p>Mesas, estanterías y armarios diseñados para tu espacio.</p></div>
+<div class="card"><h3>Cocinas y armarios</h3><p>Interiores a medida con el mejor aprovechamiento del espacio.</p></div>
+<div class="card"><h3>Puertas y ventanas</h3><p>Fabricación, ajuste y renovación en madera.</p></div>
+<div class="card"><h3>Restauración</h3><p>Damos una segunda vida a muebles con historia.</p></div>
+<div class="card"><h3>Comercios y locales</h3><p>Mostradores, expositores y mobiliario para negocios.</p></div>
+<div class="card"><h3>Eventos y frikismo</h3><p>Escudos, espadas de madera, baúles, sillas y piezas personalizadas para eventos medievales y frikis.</p></div>
+</div></div></section>
+
+<section id="trabajos"><div class="wrap">
+<h2>Trabajos</h2><p class="sub">Elige lo que te interesa y toca un proyecto para verlo en grande.</p>
+<div class="chips" id="filtros"></div>
+<div class="grid" id="galeria"></div>
+</div>
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+<div class="mbox"><button class="x" id="cx" aria-label="Cerrar">×</button>
+<div class="mb" id="mb"></div>
+<button class="nav2" id="pv" aria-label="Anterior">‹</button><button class="nav2" id="nx" aria-label="Siguiente">›</button>
+<div class="th" id="th"></div>
+<h3 id="mt"></h3><p class="md" id="md"></p>
+</div></div></section>
+
+<section id="contacto"><div class="wrap cols">
+<div>
+<h2>Pide tu presupuesto</h2><p class="sub">Cuéntanos qué necesitas y te respondemos.</p>
+<form id="f">
+<input id="n" placeholder="Tu nombre" required>
+<input id="t" placeholder="Teléfono o correo" required>
+<textarea id="m" rows="4" placeholder="¿Qué quieres que hagamos? Medidas, madera, fecha…" required></textarea>
+<button class="btn" type="submit">Enviar por correo</button>
+</form>
+</div>
+<div>
+<h2>Taller y horario</h2><p class="sub">Gremi des Fuster, 18, nave 4 Nord · 07009 Palma</p>
+<table>
+<tr><td>Lunes a jueves</td><td>9:00–13:30 · 16:00–18:30</td></tr>
+<tr><td>Viernes</td><td>9:00–13:30</td></tr>
+<tr><td>Sábado y domingo</td><td>Cerrado</td></tr>
+</table>
+<p style="margin-top:18px;font:.95rem system-ui,sans-serif">
+Teléfono / WhatsApp: <strong>[pendiente]</strong><br>Correo: <strong>[pendiente]</strong></p>
+<p style="margin-top:14px"><a class="btn alt" style="margin-left:0" href="https://www.google.com/maps/search/?api=1&query=Gremi+des+Fuster+18+07009+Palma" target="_blank" rel="noopener">Cómo llegar</a></p>
+</div>
+</div></section>
+</main>
+
+<footer>© 2026 Carpintería El Vetado · Palma de Mallorca</footer>
+<button id="up" aria-label="Volver arriba">↑</button>
+
+<script>
+var CORREO="TU_CORREO@ejemplo.com"; /* cambia por tu correo real */
+document.getElementById("f").addEventListener("submit",function(e){
+e.preventDefault();
+var n=document.getElementById("n").value,t=document.getElementById("t").value,m=document.getElementById("m").value;
+var body="Nombre: "+n+"\nContacto: "+t+"\n\n"+m;
+location.href="mailto:"+CORREO+"?subject="+encodeURIComponent("Solicitud de presupuesto")+"&body="+encodeURIComponent(body);
+});
+
+/* ===== CABECERA ===== */
+var HERO_IMG=""; /* ruta de tu foto de cabecera, p. ej. "img/cabecera.jpg" */
+function setHero(u){var h=document.getElementById("inicio");h.style.backgroundImage='linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("'+u+'")';h.classList.add("has-img");}
+if(HERO_IMG)setHero(HERO_IMG);
+document.getElementById("hp").addEventListener("change",function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){setHero(r.result)};r.readAsDataURL(f);});
+
+/* ===== TRABAJOS =====
+   c = categoría, t = título, d = descripción, i = lista de fotos (rutas), p. ej. ["img/mesa1.jpg","img/mesa2.jpg"] */
+var CATS=[["todos","Todos"],["muebles","Muebles"],["cocinas","Cocinas y armarios"],["puertas","Puertas y ventanas"],["restauracion","Restauración"],["locales","Locales"],["eventos","Eventos y frikismo"]];
+var P=[
+{c:"muebles",t:"Mesa de comedor",d:"Descripción del trabajo, madera usada y medidas.",i:[]},
+{c:"muebles",t:"Estantería a medida",d:"Descripción del trabajo, madera usada y medidas.",i:[]},
+{c:"cocinas",t:"Armario empotrado",d:"Descripción del trabajo, madera usada y medidas.",i:[]},
+{c:"puertas",t:"Puerta de entrada",d:"Descripción del trabajo, madera usada y medidas.",i:[]},
+{c:"restauracion",t:"Cómoda restaurada",d:"Descripción del trabajo, madera usada y medidas.",i:[]},
+{c:"locales",t:"Mostrador de tienda",d:"Descripción del trabajo, madera usada y medidas.",i:[]},
+{c:"eventos",t:"Escudos y espadas",d:"Descripción del trabajo, madera usada y medidas.",i:[]},
+{c:"eventos",t:"Baúl medieval",d:"Descripción del trabajo, madera usada y medidas.",i:[]}
+];
+var cur="todos",pj=0,ix=0;
+var fl=document.getElementById("filtros"),gl=document.getElementById("galeria"),md=document.getElementById("modal");
+function draw(){
+fl.innerHTML=CATS.map(function(c){return '<button class="chip'+(c[0]===cur?' on':'')+'" data-c="'+c[0]+'">'+c[1]+'</button>';}).join("");
+gl.innerHTML=P.map(function(p,k){return {p:p,k:k};}).filter(function(o){return cur==="todos"||o.p.c===cur;}).map(function(o){var u=o.p.i[0];return '<button class="pic" data-k="'+o.k+'"'+(u?' style="background-image:url(\''+u+'\')"':'')+'><span>'+o.p.t+'</span></button>';}).join("");
+}
+function show(){
+var p=P[pj],n=Math.max(p.i.length,1),u=p.i[ix];
+document.getElementById("mb").innerHTML=u?'<img src="'+u+'" alt="'+p.t+'">':'<div class="ph">Foto pendiente</div>';
+document.getElementById("mt").textContent=p.t;
+document.getElementById("md").textContent=p.d;
+var h="";for(var j=0;j<p.i.length;j++){h+='<button data-j="'+j+'" class="'+(j===ix?'on':'')+'"><img src="'+p.i[j]+'" alt=""></button>';}
+document.getElementById("th").innerHTML=h;
+var m=n>1?"":"none";document.getElementById("pv").style.display=m;document.getElementById("nx").style.display=m;
+}
+function step(d){var n=P[pj].i.length;if(n<2)return;ix=(ix+d+n)%n;show();}
+function closeM(){md.classList.remove("open");document.body.style.overflow="";}
+fl.addEventListener("click",function(e){var b=e.target.closest("[data-c]");if(b){cur=b.dataset.c;draw();}});
+gl.addEventListener("click",function(e){var b=e.target.closest("[data-k]");if(b){pj=+b.dataset.k;ix=0;show();md.classList.add("open");document.body.style.overflow="hidden";}});
+document.getElementById("th").addEventListener("click",function(e){var b=e.target.closest("[data-j]");if(b){ix=+b.dataset.j;show();}});
+document.getElementById("pv").onclick=function(){step(-1);};
+document.getElementById("nx").onclick=function(){step(1);};
+document.getElementById("cx").onclick=closeM;
+md.addEventListener("click",function(e){if(e.target===md)closeM();});
+document.addEventListener("keydown",function(e){if(!md.classList.contains("open"))return;if(e.key==="Escape")closeM();if(e.key==="ArrowLeft")step(-1);if(e.key==="ArrowRight")step(1);});
+/* ===== EXTRAS ===== */
+var secs=["servicios","trabajos","contacto"],links=document.querySelectorAll("nav a"),upb=document.getElementById("up");
+function spy(){
+var y=window.scrollY+120,now="";
+secs.forEach(function(id){var el=document.getElementById(id);if(el&&el.offsetTop<=y)now=id;});
+links.forEach(function(a){a.classList.toggle("active",a.getAttribute("href")==="#"+now);});
+upb.classList.toggle("show",window.scrollY>600);
+}
+window.addEventListener("scroll",spy,{passive:true});spy();
+upb.onclick=function(){window.scrollTo({top:0,behavior:"smooth"});};
+if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion:reduce)").matches){
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll(".card,#galeria,.chips,section h2,.cols>div").forEach(function(el,i){el.classList.add("rv");el.style.transitionDelay=(i%3)*0.08+"s";io.observe(el);});
+}
+draw();
+</script>
+</body>
+</html>
